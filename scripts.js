@@ -18,13 +18,12 @@ const Modal = {
 }
 
 const Storage = {
-    get (){
-        return JSON.parse(localStorage.getItem["dev.finances:transactions"]) || []
+    get() {
+        return JSON.parse(localStorage.getItem("dev.finances:transactions")) || []
     },
 
-    set (transactions){
-        localStorage.setItem("dev.finaces:transactions",
-        JSON.stringify(transactions))
+    set(transactions) {
+        localStorage.setItem("dev.finances:transactions", JSON.stringify(transactions))
     }
 }
 
@@ -74,7 +73,7 @@ const DOM = {
 
     addTransaction(transaction, index) {
         const tr = document.createElement('tr')
-        tr.innerHTML = DOM.innerHTMLTransaction(transaction) 
+        tr.innerHTML = DOM.innerHTMLTransaction(transaction, index) 
         tr.dataset.index = index
 
         DOM.transactionsContainer.appendChild(tr)
@@ -115,9 +114,9 @@ const DOM = {
 
 const Utils = {
     formatAmount(value){
-        value = Number(value) * 100
+        value = value * 100
         
-        return value
+        return Math.round(value)
     },
 
     formatDate(date){
@@ -192,12 +191,12 @@ const Form = {
     submit(event){
        event.preventDefault()
 
-        try { //tente
-            Form.validateField() //verificar se os campos estão preenchidos
-            const transaction = Form.formatValues() //pegar os valores formatados
-            Form.saveTransaction(transaction) //adicionar transação
-            Form.clearFields() // limpar o form
-            Modal.close() // fechar o modal
+        try { 
+            Form.validateField() 
+            const transaction = Form.formatValues() 
+            Form.saveTransaction(transaction) 
+            Form.clearFields() 
+            Modal.close() 
         } catch (error) {
             alert(error.message)    
         }
@@ -206,9 +205,7 @@ const Form = {
 
 const App = {
     init(){
-        Transaction.all.forEach(function(transaction, index) {
-            DOM.addTransaction(transaction, index)
-        })
+        Transaction.all.forEach(DOM.addTransaction)
         
         DOM.updateBalance()
 
