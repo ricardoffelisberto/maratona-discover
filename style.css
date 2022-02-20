@@ -44,6 +44,7 @@ h2 {
     margin-top: 3.2rem;
     margin-bottom: 0.8rem;
     color: var(--dark-blue);
+
     font-weight: normal;
 }
 
@@ -136,7 +137,9 @@ header {
     background: white;
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
+
     margin-bottom: 2rem;
+
     color: var(--dark-blue);
 
 }
@@ -247,8 +250,6 @@ td.expense {
 .modal {
     background: #f0f2f5;
     padding: 2.4rem;
-    width: 90%;
-    max-width: 500px;
 
     position: relative;
     z-index: 1;
@@ -276,7 +277,7 @@ input {
     margin-top: 0.8rem;
 }
 
-.input-group small {
+.input-group.help {
     opacity: 0.4;
 }
 
